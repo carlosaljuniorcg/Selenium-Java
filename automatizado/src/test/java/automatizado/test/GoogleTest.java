@@ -2,37 +2,45 @@ package automatizado.test;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+
+import automatizado.Page.GooglePO;
 
 public class GoogleTest extends BaseTest {
 
-    
+    private static GooglePO googlePage;
+
+    @BeforeClass    
+    public static void prepararTestes() {
+        googlePage = new GooglePO(driver);
+    }
     @Test
-    public void devePesquisarNoGoogle() {
+    public void TC001_devePesquisarNoGoogleOTextoHotwheels() {
         
 
-        WebElement inputPesquisa = driver.findElement(By.name("q"));
-        inputPesquisa.sendKeys("Hotwheels" + Keys.ENTER);
+        //WebElement inputPesquisa = driver.findElement(By.name("q"));
+        //googlePage.inputPesquisa.sendKeys("Hotwheels" + Keys.ENTER);
 
-        String resultado = driver.findElement(By.id("result-stats")).getText();
+        googlePage.pesquisar("Hotwheels");
 
+        String resultado = googlePage.obterResultadoDaPesquisa();
+        
         assertTrue(resultado, resultado.contains("Aproximadamente"));
                
 
     }
     @Test
-    public void devePesquisarNoGoogle2() {
+    public void TC002_devePesquisarNoGoogleOTextoRisiaKristinne() {
         
 
-        WebElement inputPesquisa = driver.findElement(By.name("q"));
-        inputPesquisa.sendKeys("Risia Kristinne" + Keys.ENTER);
-
-        String resultado = driver.findElement(By.id("result-stats")).getText();
-
-        assertTrue(resultado, resultado.contains("Aproximadamente"));
+        //WebElement inputPesquisa = driver.findElement(By.name("q"));
+        //googlePage.inputPesquisa.sendKeys("Risia Kristinne" + Keys.ENTER);
+        googlePage.pesquisar("Risia Kristinne");
+        
+        String resultado = googlePage.obterResultadoDaPesquisa();
+        
+        assertTrue(resultado, resultado.contains("resultados"));
 
         
     }
