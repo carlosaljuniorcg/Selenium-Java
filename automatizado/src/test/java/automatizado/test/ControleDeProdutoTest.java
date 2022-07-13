@@ -57,9 +57,10 @@ public class ControleDeProdutoTest extends BaseTest {
         
         String mensagem = "Todos os campos são obrigatórios para o cadastro!";
         controleProdutoPage.btnAdicionar.click();
-        controleProdutoPage.btnAdicionar.click();
+        
         //Aqui cria o objeto para adicionar a tela
         ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleProdutoPage);
+              
         //Aqui estamos testando se o produto é add sem código
         produtoBuilder
         .addCodigo("")
@@ -69,25 +70,36 @@ public class ControleDeProdutoTest extends BaseTest {
                
         //Aqui estamos testando se o produto é add sem quantidade
         produtoBuilder
-        .addCodigo("0005")
-        .addNome("Antena")
         .addQuantidade(null)
-        .addValor(5.5)
         .builder();
 
         assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
 
-        //Aqui estamos testando se o produto é add sem quantidade
+        //Aqui estamos testando se o produto é add sem nome 
         produtoBuilder
         .addNome("")
-        .addQuantidade(200)
-        .addValor(1.5)
         .builder();
 
         assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
         
+        //Aqui estamos testando se o produto é add sem valor 
+        produtoBuilder
+        .addValor(null)
+        .builder();
+
+        assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
+
+        //Aqui estamos testando se o produto é add sem data 
+        produtoBuilder
+        .addData("")
+        .builder();
+
+        assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
+
+        //controleProdutoPage.btnAdicionar.click();
+        //controleProdutoPage.btnAdicionar.click();
         //Aqui vamos capturar a mensagem de ERRO.
-        //String mensagem = controleProdutoPage.spanMensagem.getText();
+        //String mensagem = controleProdutoPage.s   panMensagem.getText();
 
         //assertEquals("Todos os campos são obrigatórios para o cadastro!", controleProdutoPage.spanMensagem.getText());
     }
