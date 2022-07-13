@@ -8,6 +8,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import automatizado.Builder.ProdutoBuilder;
 import automatizado.Page.ControleDeProdutoPO;
 import automatizado.Page.LoginPO;
 
@@ -39,12 +40,25 @@ public class ControleDeProdutoTest extends BaseTest {
         controleProdutoPage.btnSair.click();
     }
 
-    @Test
+    /*@Test
     public void TC002_nãoDeveSerPossivelCadastrarUmProdutoSemPreencherTodosOsCampos() {
         controleProdutoPage.btnAdicionar.click();
 
         controleProdutoPage.cadastrarProduto("0001", "Martelo", 10, 59.9, "");
         
+        //Aqui vamos capturar a mensagem de ERRO.
+        String mensagem = controleProdutoPage.spanMensagem.getText();
+
+        assertEquals("Todos os campos são obrigatórios para o cadastro!", mensagem);
+    }*/
+
+    @Test
+    public void TC003_nãoDeveSerPossivelCadastrarUmProdutoSemPreencherTodosOsCampos() {
+        
+        controleProdutoPage.btnAdicionar.click();
+
+        ProdutoBuilder produtoBuilder = new ProdutoBuilder();
+        controleProdutoPage.cadastrarProduto(produtoBuilder);
         //Aqui vamos capturar a mensagem de ERRO.
         String mensagem = controleProdutoPage.spanMensagem.getText();
 

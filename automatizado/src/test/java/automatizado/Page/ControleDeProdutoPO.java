@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
+import automatizado.Builder.ProdutoBuilder;
+
 public class ControleDeProdutoPO extends BasePO {
 
     @FindBy(id = "btn-adicionar")
@@ -64,6 +66,18 @@ public class ControleDeProdutoPO extends BasePO {
             escrever(inputQuantidade, quantidade.toString());
             escrever(inputValor, valor.toString());
             escrever(inputData, data);
+
+            btnSalvar.click();
+            
+    }
+
+    public void cadastrarProduto(ProdutoBuilder produtoBuilder) {
+
+            escrever(inputCodigo, produtoBuilder.codigo);
+            escrever(inputNome, produtoBuilder.nome);
+            escrever(inputQuantidade, produtoBuilder.quantidade.toString());
+            escrever(inputValor, produtoBuilder.valor.toString());
+            escrever(inputData, produtoBuilder.data);
 
             btnSalvar.click();
             
