@@ -53,7 +53,7 @@ public class ControleDeProdutoTest extends BaseTest {
     }*/
 
     @Test
-    public void TC003_nãoDeveSerPossivelCadastrarUmProdutoSemPreencherTodosOsCampos() {
+    public void TC003_DeveSerPossivelCadastrarUmProdutoSemPreencherTodosOsCampos() {
         
         controleProdutoPage.btnAdicionar.click();
 
