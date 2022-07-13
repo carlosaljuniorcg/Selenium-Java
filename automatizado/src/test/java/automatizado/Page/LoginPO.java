@@ -29,11 +29,6 @@ public class LoginPO extends BasePO {
         super(driver);  
     }
 
-    public void escrever(WebElement input, String texto) {
-        input.clear();
-        input.sendKeys(texto + Keys.TAB);
-    }
-
     public String obterMensagem() {
         return spanMensagem.getText();
     }
@@ -49,7 +44,5 @@ public class LoginPO extends BasePO {
         btnEntrar.click(); 
     }
 
-    public String obterTituloPagina() {
-        return driver.getTitle();
-    }
+    
 }
