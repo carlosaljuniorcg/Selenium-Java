@@ -55,13 +55,40 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC003_DeveSerPossivelCadastrarUmProdutoSemPreencherTodosOsCampos() {
         
+        String mensagem = "Todos os campos são obrigatórios para o cadastro!";
         controleProdutoPage.btnAdicionar.click();
+        controleProdutoPage.btnAdicionar.click();
+        //Aqui cria o objeto para adicionar a tela
+        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleProdutoPage);
+        //Aqui estamos testando se o produto é add sem código
+        produtoBuilder
+        .addCodigo("")
+        .builder();
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder();
-        controleProdutoPage.cadastrarProduto(produtoBuilder);
+        assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
+               
+        //Aqui estamos testando se o produto é add sem quantidade
+        produtoBuilder
+        .addCodigo("0005")
+        .addNome("Antena")
+        .addQuantidade(null)
+        .addValor(5.5)
+        .builder();
+
+        assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
+
+        //Aqui estamos testando se o produto é add sem quantidade
+        produtoBuilder
+        .addNome("")
+        .addQuantidade(200)
+        .addValor(1.5)
+        .builder();
+
+        assertEquals(mensagem, controleProdutoPage.spanMensagem.getText());
+        
         //Aqui vamos capturar a mensagem de ERRO.
-        String mensagem = controleProdutoPage.spanMensagem.getText();
+        //String mensagem = controleProdutoPage.spanMensagem.getText();
 
-        assertEquals("Todos os campos são obrigatórios para o cadastro!", mensagem);
+        //assertEquals("Todos os campos são obrigatórios para o cadastro!", controleProdutoPage.spanMensagem.getText());
     }
 }

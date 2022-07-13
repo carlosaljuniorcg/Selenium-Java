@@ -1,11 +1,21 @@
 package automatizado.Builder;
 
+import org.openqa.selenium.WebDriver;
+
+import automatizado.Page.ControleDeProdutoPO;
+
 public class ProdutoBuilder {
-    public String codigo = "0001";
-    public String nome = "Produto padrão";
-    public Integer quantidade = 1;
-    public Double valor = 1.0;
-    public String data = "01/01/2022";
+    private String codigo = "0001";
+    private String nome = "Produto padrão";
+    private Integer quantidade = 1;
+    private Double valor = 1.0;
+    private String data = "01/01/2022";
+
+    private ControleDeProdutoPO controleDeProdutoPO;
+
+    public ProdutoBuilder(ControleDeProdutoPO controleDeProdutoPO) {
+        this.controleDeProdutoPO = controleDeProdutoPO;
+    }
 
     public ProdutoBuilder addCodigo(String codigo) {
         this.codigo = codigo;
@@ -30,6 +40,18 @@ public class ProdutoBuilder {
     public ProdutoBuilder addData(String data) {
         this.data = data;
         return this;
+    }
+
+    public void builder() {
+        
+        controleDeProdutoPO.escrever(controleDeProdutoPO.inputCodigo, codigo);
+        controleDeProdutoPO.escrever(controleDeProdutoPO.inputNome, nome);
+        controleDeProdutoPO.escrever(controleDeProdutoPO.inputQuantidade, quantidade.toString());
+        controleDeProdutoPO.escrever(controleDeProdutoPO.inputValor, valor.toString());
+        controleDeProdutoPO.escrever(controleDeProdutoPO.inputData, data);
+
+        controleDeProdutoPO.btnSalvar.click();
+
     }
 
 }
